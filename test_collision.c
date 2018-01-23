@@ -44,6 +44,8 @@ void test_box()
     aa_rx_sg_cl_init(sg);
 
 	struct aa_rx_cl *cl = aa_rx_cl_create(sg);
+
+	struct aa_rx_cl *cl1 = aa_rx_cl_create(sg);
 	n = aa_rx_sg_frame_count(sg);
 	double TF_relarr[7*n];
 	double TF_absarr[7*n];
@@ -61,7 +63,7 @@ void test_box()
     int retr1, retr2;
 
     retr1 = pthread_create(&thread1, NULL, doCollision, (void *) cl);
-    retr2 = pthread_create(&thread2, NULL, doCollision, (void *) cl);
+    retr2 = pthread_create(&thread2, NULL, doCollision, (void *) cl1);
 
     pthread_join(thread1, NULL);
     pthread_join(thread2, NULL);
@@ -78,12 +80,9 @@ void* doCollision(void* arg)
     struct aa_rx_cl *col = (struct aa_rx_cl*) arg;
 	int is_collision;
 
-	pthread_mutex_lock(&mutex);
 	is_collision = aa_rx_cl_check(col, (size_t) n, TF_abs, 7, NULL);
-	pthread_mutex_unlock(&mutex);
 
 
-	printf("collision: %i\n\r", is_collision);
 	assert ( is_collision );
 
 }
