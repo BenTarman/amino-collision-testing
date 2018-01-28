@@ -38,8 +38,6 @@ void test_box()
     aa_rx_geom_attach( sg, "a", aa_rx_geom_box(opt_cl, d) );
     aa_rx_geom_attach( sg, "b", aa_rx_geom_box(opt_cl, d) );
 
-
-
     aa_rx_sg_init(sg);
     aa_rx_sg_cl_init(sg);
 

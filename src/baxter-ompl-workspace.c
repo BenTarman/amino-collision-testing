@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     /* set work space goal */
     {
         double E_ref[7] = { -2.0, 1.0, 1.0, 1.0, /* quaternion x-y-z-w */
-                        0.8, .5, .3051 /* translation x-y-z */
+                        0.8, 0.0, .3051 /* translation x-y-z */
         };
 
         int r = aa_rx_mp_set_wsgoal( mp, 1, NULL, E_ref, 7 );
